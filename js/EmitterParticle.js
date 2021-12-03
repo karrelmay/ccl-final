@@ -2,11 +2,11 @@ class EmitterParticle {
   constructor(x, y, r) {
     this.pos = createVector(x, y);
     this.vel = p5.Vector.random2D();
-    this.vel.mult(random(1, 4));
+    this.vel.mult(random(15));
     this.acc = createVector(0, 0);
     this.r = r;
     this.lifetime = 255;
-    this.lifeReduction = random(5);
+    this.lifeReduction = random(5, 7);
   }
   finished() {
     return (this.lifetime < 0);
@@ -32,7 +32,7 @@ class EmitterParticle {
     // fill(120, 80, 5, this.lifetime);
     let dia = map(this.lifetime, 0, 255, 0, this.r * 2);
     circle(this.pos.x, this.pos.y, dia);
-    circle(this.pos.x, this.pos.y, dia * 0.7);
+    // circle(this.pos.x, this.pos.y, dia * 0.7);
     circle(this.pos.x, this.pos.y, dia * 0.5);
     circle(this.pos.x, this.pos.y, dia * 0.2);
     pop();

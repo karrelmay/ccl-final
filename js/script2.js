@@ -87,7 +87,7 @@ function draw() {
 }
 
 function mousePressed() {
-    console.log(mouseX, mouseY);
+    // console.log(mouseX, mouseY);
     if(counter < seq.length) {
         activeSeq.push(seq[counter]);
         counter += 1;

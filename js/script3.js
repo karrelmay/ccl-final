@@ -28,12 +28,15 @@ let handX, handY;
 
 function setup() {
   let canvas = createCanvas(2388 * 0.65, 1668 *0.65);
-  canvas.id("canvas-container");
+  canvas.id("canvas-container-game");
   // let canvas = createCanvas(640, 480);
   // canvas.id("canvas-container")
+
+  frameRate(60);
   xscale = 2388 / 640 * 0.65;
   yscale = 1668 / 480 * 0.65;
   Entry = new Entry(1000);
+
   video = createCapture(VIDEO);
   video.size(width, height);
   video.hide();
@@ -67,10 +70,18 @@ function modelReady() {
 
 function draw() {
   background(0);
+    push();
+    // image(video, 0, 0, width, height);
+    // push();
+    // // blendMode(OVERLAY);
+    // // fill(0,0,0, 95);
+    // rect(0,0,width, height);
+    pop();
+
+    // image(video, 0, 0, width, height);
 
   // pixel manipulation
-  video.loadPixels();
-  // image(video, 0, 0, width, height);
+
   video.loadPixels();
   img.loadPixels();
   for (let y = 0; y < video.height; y++) {
@@ -97,9 +108,10 @@ function draw() {
       }
     }
   }
-  img.updatePixels();
 
-  image(img, 0, 0);
+  img.updatePixels();
+    image(img, 0, 0);
+
 
   if (predictions.length > 0) {
     // hand is detected
@@ -149,8 +161,8 @@ function draw() {
       scale(0.65);
       monsters[0].show();
       pop();
-      console.log(monsters[0].x, monsters[0].y);
-      console.log(handX, handY)
+      // console.log(monsters[0].x, monsters[0].y);
+      // console.log(handX, handY)
       monsters[0].check_hit(handX * xscale / 0.65, handY * yscale / 0.65);
       if (!monsters[0].check_alive()) {
           deads.push(monsters[0]);

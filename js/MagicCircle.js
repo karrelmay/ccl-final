@@ -73,9 +73,9 @@ class MagicCircle {
     let rune = new Rune(c, 0, 0, 3, 15, 80, 200, 200, 0);
     append(this.lis2, rune);
   }
-  this.Red1 = 20;
-  this.Green1 = 80;
-  this.Blue1 = 80;
+  this.Red1 = 0;
+  this.Green1 = 35;
+  this.Blue1 = 97;
   this.alpha1 = 100;
   this.alpha2 = 80;
   this.Red2 = 80;

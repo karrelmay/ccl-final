@@ -29,7 +29,7 @@ class monster extends Appearable {
     }
 
     check_hit(x, y) {
-        console.log('test');
+        // console.log('test');
         if(this.x  < x && this.x + 400 > x && this.y  < y && this.y + 600 > y) {
             console.log('kill')
             this.kill();

@@ -9,9 +9,9 @@ class turnable extends Img {
 
     show() {
         push();
-        translate(465, 490);
+        translate(184, 215);
         rotate(this.angle);
-        translate(-465, -490);
+        translate(-184, -215);
         image(this.content,0,0);
         pop();
     }

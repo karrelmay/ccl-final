@@ -27,15 +27,14 @@ function preload(){
 let handX, handY;
 
 function setup() {
-  let canvas = createCanvas(2388 * 0.65, 1668 *0.65);
+  let canvas = createCanvas(1080, 754);
   canvas.id("canvas-container-game");
   // let canvas = createCanvas(640, 480);
   // canvas.id("canvas-container")
 
   frameRate(60);
-  xscale = 2388 / 640 * 0.65;
-  yscale = 1668 / 480 * 0.65;
-  Entry = new Entry(1000);
+  entry = new Entry(1000);
+  exit = new Entry(1000);
 
   video = createCapture(VIDEO);
   video.size(width, height);
@@ -45,16 +44,18 @@ function setup() {
   monsters = [];
   deads = [];
 
-  for (let i = 0; i<50; i++) {
+  for (let i = 0; i<20; i++) {
+      //let arr = [goblin1]
       let arr = [goblin1, goblin2, goblin3];
       let darr = [d1, d2, d3, d4, d5];
-      let goblin = new monster(random(arr), random(darr), 0, 0, 100, 2000, 450, 600);
+      let goblin = new monster(random(arr), random(darr), 0, 0, 0, 1080-118, 165, 455-150);
       goblin.randomRelocate();
       monsters.push(goblin);
   }
   counter = 0;
 
-  handpose = ml5.handpose(video, modelReady);
+const handpose = ml5.handpose(video, {flipHorizontal:true});
+  // handpose = ml5.handpose(video, modelReady);
   handpose.on("predict", (results) => {
   predictions = results;
 
@@ -70,15 +71,7 @@ function modelReady() {
 
 function draw() {
   background(0);
-    push();
-    // image(video, 0, 0, width, height);
-    // push();
-    // // blendMode(OVERLAY);
-    // // fill(0,0,0, 95);
-    // rect(0,0,width, height);
-    pop();
-
-    // image(video, 0, 0, width, height);
+  drawWebcamImage;
 
   // pixel manipulation
 
@@ -110,7 +103,11 @@ function draw() {
   }
 
   img.updatePixels();
+    push();
+    translate(width,0);
+    scale(-1, 1);
     image(img, 0, 0);
+    pop();
 
 
   if (predictions.length > 0) {
@@ -127,53 +124,64 @@ function draw() {
     handX = middleBase[0];
     handY = middleBase[1];
 
-    emitter.updatePosition(handX * xscale, handY * yscale);
+      console.log(handX, handY);
+      circle(handX, handY, 50);
+
+    emitter.updatePosition(handX, handY);
     emitter.emit(4);
-    mc.relocate(handX * xscale, handY * yscale);
+    mc.relocate(handX, handY);
     mc.show();
     // console.log(handX, handY);
   }
 
-  // if (mouseIsPressed) {
-  //   handX = mouseX;
-  //   handY = mouseY;
-  //   emitter.updatePosition(handX, handY);
-  //   emitter.emit(4);
-  // }
+  if (mouseIsPressed) {
+    handX = mouseX;
+    handY = mouseY;
+    emitter.updatePosition(handX, handY);
+    emitter.emit(4);
+  }
 
   // update and display
   emitter.update();
   emitter.show();
   push();
-  scale(0.65);
   p1.show();
   pop();
 
   if (counter >=0 && counter <= 0) {
-      Entry.show();
+      entry.show();
   }
   if (counter == 1) {
-      Entry.exit();
+      entry.enter();
   }
+
+  deads.forEach(x => x.death());
 
   if(counter >= 1 && monsters.length != 0){
       push();
-      scale(0.65);
       monsters[0].show();
       pop();
       // console.log(monsters[0].x, monsters[0].y);
       // console.log(handX, handY)
-      monsters[0].check_hit(handX * xscale / 0.65, handY * yscale / 0.65);
+      monsters[0].check_hit(handX, handY);
       if (!monsters[0].check_alive()) {
           deads.push(monsters[0]);
           setTimeout(function() {deads.splice(0, 1);}, 3000)
           monsters.splice(0, 1);
       }
   }
-  deads.forEach(x => x.death());
 
 }
 
+function drawWebcamImage(){
+  push();
+  translate(width, 0);
+  scale(-1,1);
+  pop();
+}
+
 function mousePressed() {
+    console.log(mouseX, mouseY)
     counter += 1;
+
 }

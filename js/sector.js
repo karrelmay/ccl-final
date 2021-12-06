@@ -19,8 +19,8 @@ class sector {
     update() {
         this.p1x = this.p1x - this.d * Math.sin(this.angle/2);
         this.p1y = this.p1y - this.d * Math.cos(this.angle/2);
-        this.p2x = this.p1x + this.d * Math.sin(this.angle/2);
-        this.p2y = this.p1y - this.d * Math.cos(this.angle/2);
+        this.p2x = this.p2x + this.d * Math.sin(this.angle/2);
+        this.p2y = this.p2y - this.d * Math.cos(this.angle/2);
     }
 
     improve() {
@@ -35,7 +35,7 @@ class sector {
         }
     }
 
-    show() {
+    enterShow() {
         push();
         translate(width/2, height/2);
         fill('black');
@@ -46,6 +46,20 @@ class sector {
         vertex(this.p2x, this.p2y);
         vertex(this.p3x, this.p3y);
         vertex(this.p4x, this.p4y);
+        endShape(CLOSE);
+        pop();
+    }
+
+    exitShow() {
+        push();
+        translate(width/2, height/2);
+        fill('black');
+        noStroke();
+        rotate(this.n * this.angle);
+        beginShape();
+        vertex(this.p1x, this.p1y);
+        vertex(this.p2x, this.p2y);
+        vertex(0, 0);
         endShape(CLOSE);
         pop();
     }

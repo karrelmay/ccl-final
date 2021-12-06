@@ -30,7 +30,7 @@ class monster extends Appearable {
 
     check_hit(x, y) {
         // console.log('test');
-        if(this.x  < x && this.x + 400 > x && this.y  < y && this.y + 600 > y) {
+        if(this.x  < x && this.x + 100 > x && this.y  < y && this.y + 150 > y) {
             console.log('kill')
             this.kill();
         }
@@ -41,6 +41,6 @@ class monster extends Appearable {
     }
 
     death() {
-      image(this.d, this.x * 0.65, this.y * 0.65);
+      image(this.d, this.x, this.y);
     }
 }

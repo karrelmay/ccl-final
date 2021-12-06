@@ -1,13 +1,16 @@
 let close = document.getElementById('close')
 let modal_container = document.getElementById('modal_container')
+let start = false;
+let playerName;
 
 document.getElementById('close').onclick = function(){
-  let playerName = document.getElementById('name-input').value;
+  playerName = document.getElementById('name-input').value;
   console.log("hello", playerName);
 }
 
 close.addEventListener('click', () => {
   modal_container.classList.add('close')
+  start = true;
   // console.log("s")
 });
 
@@ -82,11 +85,17 @@ function draw() {
   }
 
   activeSeq.forEach(x => x.fade());
+
+  if (counter >= 6) {
+      textFont("Comic Sans MS");
+      textSize(20);
+      text(playerName, 55, 360);
+  }
 }
 
 function mousePressed() {
-
-  if (counter < seq.length) {
+    console.log(mouseX, mouseY);
+  if (counter < seq.length && start) {
     activeSeq.push(seq[counter]);
     counter += 1;
   }

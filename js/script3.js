@@ -2,8 +2,6 @@ let handpose;
 let video;
 let predictions = [];
 let emitter;
-let x;
-let y;
 
 // //soundeffect
 // let sound;
@@ -24,10 +22,6 @@ function preload(){
     d3 = loadImage("assets/effect3.png")
     d4 = loadImage("assets/effect4.png")
     d5 = loadImage("assets/effect5.png")
-
-    //preload for instruction and victory
-    // instru = loadImage("...");
-    // vic = loadImage("...")
 }
 
 let handX, handY;
@@ -41,10 +35,6 @@ function setup() {
   frameRate(60);
   entry = new Entry(1000);
   exit = new Entry(1000);
-
-  //init for instruction and victory
-  // instruction = new Img(instru, 25, 0);
-  // victory = new Img(vic, 25, 0);
 
   video = createCapture(VIDEO);
   video.size(width, height);
@@ -134,14 +124,12 @@ function draw() {
     handX = middleBase[0];
     handY = middleBase[1];
 
-      console.log(handX, handY);
+    console.log(handX, handY);
+    circle(handX, handY, 50);
 
-     x = map(handX, 460, 1080, 0, 1080)
-     y = map(handY, 0, 460, 0, 754)
-
-    emitter.updatePosition(x, y);
+    emitter.updatePosition(handX, handY);
     emitter.emit(4);
-    mc.relocate(x, y);
+    mc.relocate(handX, handY);
     mc.show();
     // console.log(handX, handY);
   }
@@ -169,6 +157,7 @@ function draw() {
 //     instruction.show()
 // }
 
+
   if (counter == 1) {
       entry.enter();
   }
@@ -181,7 +170,7 @@ function draw() {
       pop();
       // console.log(monsters[0].x, monsters[0].y);
       // console.log(handX, handY)
-      monsters[0].check_hit(x, y);
+      monsters[0].check_hit(handX, handY);
       if (!monsters[0].check_alive()) {
           deads.push(monsters[0]);
           setTimeout(function() {deads.splice(0, 1);}, 3000)
@@ -193,6 +182,8 @@ function draw() {
 // if(monsters.length == 0) {
 //     victory.show()
 // }
+
+
 }
 
 function drawWebcamImage(){

@@ -12,14 +12,13 @@
   <nav>
     <ul class="nav-links">
       <li> <a href="index.html">HOME</a> </li>
-      <li> <a href="page1.html">NEXT</a> </li>
       <li> <a href="https://github.com/karrelmay/ccl-final">GITHUB</a> </li>
     </ul>
   </nav>
 
   <a class="cta" href="#"> <button>DOCUMENTATION</button></a>
 </header>
-
+    <script src="js/index-modal.js" type="text/javascript"></script>
   <body>
     <!-- <div class="box"></div> -->
     <div class="intro-phrase">
@@ -32,13 +31,30 @@
 
     <div class="intro-play">
         <a class="cta" href="page1.html"> <button>PLAY NOW</button></a>
-        <a class="cta" href="#"> <button>INSTRUCTIONS</button></a>
+
+        <a class="cta" id = "open" href="#"> <button>INSTRUCTIONS</button></a>
+    </div>
+
+    <div class="modal-container" id="modal_container">
+      <div class="modal">
+      <div class="idx-instructions">
+      <h2>instructions</h2>
+
+      <p><strong> CLICK </strong> on the screen to interact with the manga <br><br>
+        click on the <strong>NEXT PAGE</strong> button to transition between pages<br><br>
+        Remember, <strong> ALLOW camera access </strong> & make sure <strong>NO OTHER</strong> application is using it!<br><br>
+        <strong>zooming out may be necessary if all assets aren't viewed correctly!</strong> <br><br>
+        Have fun, 頑張ってね !</p>
+        </div>
+
+        <button id="close">close</button>
+        </div>
     </div>
 
   </body>
 
   <div id ="footer">
-    <h3> / art & code by Karrel May Sinfuego / </h3>
+    <h3> / art & code by karrelmay / </h3>
   </div>
 
 </html>

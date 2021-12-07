@@ -84,6 +84,7 @@ h2 {
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 300;
+  font-size: 2vh;
 }
 
 h3 {
@@ -117,7 +118,7 @@ text-align: center;
 }
 
 .modal-container {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.65);
     position: fixed;
     top: 0;
     left: 0;
@@ -153,13 +154,19 @@ z-index: 1;
   width: 50vh;
   height: 4vh;
 }
-
-::placeholder {
+#name-input:focus {
   text-align: center;
-  font-size: 1.4vh;
+  font-size: 1.8vh;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 400;
-  color: rgba(55, 57, 57, 0.6)
+  color: rgba(55, 57, 57, 0.6);
+}
+::placeholder, select {
+  text-align: center;
+  font-size: 1.8vh;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  color: rgba(55, 57, 57, 0.6);
 }
 
 .intro-play {
@@ -179,17 +186,18 @@ width: 400px; */
 /* p5 canvas */
 #canvas-container {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 50vw;
+  top: 58vh;
   transform: translate(-50%, -50%);
   z-index: -1;
+
 }
 
 /*page 3 canvas*/
 #canvas-container-game {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 50vw;
+  top: 58vh;
   transform: translate(-50%, -50%);
   z-index: 1;
 }
@@ -205,5 +213,7 @@ margin: 2vh;
 /* footer */
 #footer {
   position: absolute;
-  top: 96%;
+  top: 100vh; ;
   left: 44%;
+  margin: 1vh;
+}

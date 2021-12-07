@@ -11,7 +11,6 @@ document.getElementById('close').onclick = function(){
 close.addEventListener('click', () => {
   modal_container.classList.add('close')
   start = true;
-  // console.log("s")
 });
 
 
@@ -63,11 +62,6 @@ function setup() {
   activeSeq = [];
   counter = 0;
   Noisefield = new Noisefield(425, 1075, 2, 225, 255, 100, 4);
-  // cols = floor(width / scl);
-  // rows = floor(height / scl);
-  // for (var i = 0; i < 100; i++) {
-  //     particles[i] = new Particle(950, 2388, 5, 500);
-  // }
 }
 
 let shakingCounter = 0;

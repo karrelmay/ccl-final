@@ -45,7 +45,6 @@ function setup() {
     counter = 0;
     Emitter = new Emitter(565, 339, 8);
     Mc = new MagicCircle(0.2, 664, 635);
-    //frameRate(1);
 }
 
 

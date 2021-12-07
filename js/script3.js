@@ -5,7 +5,6 @@ let emitter;
 
 //monsters
 let goblin =[]
-let dragon =[]
 
 
 function preload(){
@@ -18,8 +17,8 @@ function preload(){
     d3 = loadImage("assets/effect3.png");
     d4 = loadImage("assets/effect4.png");
     d5 = loadImage("assets/effect5.png");
-    victory = loadImage("assets/victory.png");
-    instructions = loadImage("assets/instructions.png");
+    vic = loadImage("assets/victory.png");
+    instru = loadImage("assets/instructions.png");
 }
 
 let handX, handY;
@@ -31,7 +30,8 @@ function setup() {
   frameRate(60);
   entry = new Entry(1000);
   exit = new Entry(1000);
-
+  victory = new Img(vic, 25, 0);
+  instruction = new Img(instru, 25, 0);
   video = createCapture(VIDEO);
   video.size(width, height);
   video.hide();
@@ -146,8 +146,7 @@ function draw() {
 
   if (counter >=0 && counter <= 0) {
       entry.show();
-      // new Img(instructions, 20, 0);
-      image(instructions, 0, 0)
+      instruction.show();
   }
 
   if (counter == 1) {
@@ -176,8 +175,7 @@ function draw() {
 
 //victory screen
 if (monsters.length == 0) {
-  image(victory, 0, 0);
-  // new Img(victory, 20, 0);
+  victory.fade();
 
 }
 
